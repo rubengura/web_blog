@@ -1,6 +1,6 @@
-import pymongo
-
 __author__ = "rgr"
+
+import pymongo
 
 
 class Database(object):

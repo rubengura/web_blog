@@ -1,8 +1,8 @@
+__author__ = "rgr"
+
 from src.common.database import Database
 from datetime import datetime
 import uuid
-
-__author__ = "rgr"
 
 
 class Post:
