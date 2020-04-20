@@ -1,3 +1,5 @@
+__author__ = "rgr"
+
 from datetime import datetime
 import uuid
 
@@ -5,8 +7,6 @@ from flask import session
 
 from src.models.blog import Blog
 from src.common.database import Database
-
-__author__ = "rgr"
 
 
 class User:
@@ -89,3 +89,9 @@ class User:
                                       query={'_id': _id})
 
         return cls(**blog_data)
+
+    @classmethod
+    def find_by_author_id(cls, author_id):
+        blogs = Database.find(collection='blogs',
+                              query={'author_id': author_id})
+        return [cls(**blog) for blog in blogs]
