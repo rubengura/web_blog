@@ -1,6 +1,6 @@
 __author__ = "rgr"
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, session
 
 from src.models.users import User
 
@@ -19,7 +19,6 @@ def login_user():
         User.login(email)
 
     return render_template("profile.html", email=session['email'])
-
 
 
 if __name__ == '__main__':
