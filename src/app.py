@@ -31,6 +31,15 @@ def login_user():
 
     return render_template("profile.html", email=session['email'])
 
+@app.route('/register', method=["POST"])
+def register_user():
+    email = request.form['email']
+    password = request.form['password']
+
+    User.register(email, password)
+
+    return render_template("profile.html", email=session['email'])
+
 
 if __name__ == '__main__':
     app.run()
