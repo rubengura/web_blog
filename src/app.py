@@ -10,8 +10,18 @@ app.secret_key = "secret_key"
 
 
 @app.route('/')
-def hello_method():
-    return render_template("login.html")
+def home_template():
+    return render_template('home.html')
+
+
+@app.route('/login')  # 127.0.0.1:4995/api/login
+def login_template():
+    return render_template('login.html')
+
+
+@app.route('/register')  # 127.0.0.1:4995/api/register
+def register_template():
+    return render_template('register.html')
 
 
 @app.before_first_request
@@ -19,7 +29,7 @@ def initialize_database():
     Database.initialize()
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/auth/login', methods=['POST'])
 def login_user():
     email = request.form['email']
     password = request.form['password']
@@ -29,9 +39,10 @@ def login_user():
     else:
         session['email'] = None
 
-    return render_template("profile.html", email=session['email'])
+    return render_template('profile.html', email=session['email'])
 
-@app.route('/register', method=["POST"])
+
+@app.route('/auth/register', method=["POST"])
 def register_user():
     email = request.form['email']
     password = request.form['password']
