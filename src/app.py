@@ -42,12 +42,13 @@ def login_user():
     return render_template('profile.html', email=session['email'])
 
 
-@app.route('/auth/register', method=["POST"])
+@app.route('/auth/register', methods=["POST"])
 def register_user():
     email = request.form['email']
     password = request.form['password']
 
     User.register(email, password)
+    session["email"] = email
 
     return render_template("profile.html", email=session['email'])
 
