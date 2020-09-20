@@ -3,8 +3,8 @@
 <div class="container">
     <h2>{{ emails }}'s blogs</h2>
     {% for blog in blogs %}
-        <h3>{{ blog.title }}</h3>
-        <p>{{ blog. description }}</p>
+        <h3><a href="/posts/{{ blog._id }}"> {{blog.title }} </a></h3>
+        <p>{{ blog.description }}</p>
         <hr>
     {% endfor %}
 </div>
