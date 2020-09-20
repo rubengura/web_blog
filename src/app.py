@@ -3,6 +3,7 @@ __author__ = "rgr"
 from flask import Flask, render_template, request, session
 
 from src.common.database import Database
+from src.models.blog import Blog
 from src.models.users import User
 
 app = Flask(__name__)
@@ -53,7 +54,7 @@ def register_user():
     return render_template("profile.html", email=session['email'])
 
 
-@app.route('/blogs/<string:user:id>')
+@app.route('/blogs/<string:user_id>')
 @app.route('/blogs')
 def user_blogs(user_id):
     if user_id is not None:
@@ -65,6 +66,12 @@ def user_blogs(user_id):
 
     return render_template("user_blogs.html", blogs=blogs)
 
+@app.route('/posts/<string:blog_id')
+def blog_posts(blog_id):
+    blog = Blog.from_mongo(blog_id)
+    posts = blog.get_posts()
+
+    return render_template('posts.html', posts=posts, blog_title=blog.title)
 
 if __name__ == '__main__':
     app.run()
