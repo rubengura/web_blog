@@ -13,7 +13,7 @@ app.secret_key = "secret_key"
 
 @app.route('/')
 def home_template():
-    return render_template('home.html')
+    return render_template('base.html')
 
 
 @app.route('/login')  # 127.0.0.1:4995/api/login

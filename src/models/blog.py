@@ -50,4 +50,4 @@ class Blog:
         blogs = Database.find(collection='blogs',
                               query={'author_id': author_id})
 
-        return [cls(**blog)  for blog in blogs]
+        return [cls(**blog) for blog in blogs]

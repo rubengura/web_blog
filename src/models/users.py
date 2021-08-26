@@ -27,7 +27,7 @@ class User:
         if data is not None:
             return cls(**data)
 
-    @ staticmethod
+    @staticmethod
     def login_valid(email, password):
         # Check whether a user's email matches the password they sent us
         user = User.get_by_email(email)
@@ -38,7 +38,7 @@ class User:
 
     @classmethod
     def register(cls, email, password):
-        user = User.get_by_email(email)
+        user = cls.get_by_email(email)
         if user is None:
             new_user = cls(email, password)
             new_user.save_to_mongo()
@@ -73,8 +73,7 @@ class User:
                       date=date)
 
     def save_to_mongo(self):
-        Database.insert(collection='users',
-                        data=self.json())
+        Database.insert(collection='users', data=self.json())
 
     def json(self):
         return {
